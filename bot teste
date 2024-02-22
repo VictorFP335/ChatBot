@@ -1,0 +1,48 @@
+import discord
+from discord.ext import commands
+import random
+
+# Configurar as intenções
+intents = discord.Intents.default()
+intents.messages = True
+intents.guilds = True
+intents.reactions = True
+intents.members = True
+
+# Configurar o bot com o prefixo e as intenções
+bot = commands.Bot(command_prefix='!', intents=intents)
+
+# Evento quando o bot está pronto
+@bot.event
+async def on_ready():
+    print(f'Bot está online: {bot.user.name}')
+
+# Comando de saudação
+@bot.command(name='ola')
+async def hello(ctx):
+    await ctx.send(f'Olá, {ctx.author.mention}!')
+@bot.command(name='saudacao')
+async def saudacao(ctx, usuario: discord.User):
+    await ctx.send(f'Olá, {usuario.mention}! Bem-vindo(a)!')
+
+# Comando de despedida
+@bot.command(name='despedir')
+async def despedir(ctx, usuario: discord.User = None):
+    despedidas = [
+        "Até logo!",
+        "Até mais tarde!",
+        "Até a próxima!",
+        "Adeus!",
+        "Tchau!"
+    ]
+
+    despedida_escolhida = random.choice(despedidas)
+
+    # Verifique se um usuário foi mencionado
+    if usuario:
+        await ctx.send(f"{despedida_escolhida} {usuario.mention}")
+    else:
+        await ctx.send(despedida_escolhida)
+
+# Iniciar o bot com o token
+bot.run('MTE5NTA1MjQ3NjU2MzQ2MDExNw.GXbWXh.lLSGOoPy1Tx43UGZN78NY_gfz2EJlFblfS-2hs')
