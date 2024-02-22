@@ -45,4 +45,4 @@ async def despedir(ctx, usuario: discord.User = None):
         await ctx.send(despedida_escolhida)
 
 # Iniciar o bot com o token
-bot.run('MTE5NTA1MjQ3NjU2MzQ2MDExNw.GXbWXh.lLSGOoPy1Tx43UGZN78NY_gfz2EJlFblfS-2hs')
+bot.run('Tokem')
